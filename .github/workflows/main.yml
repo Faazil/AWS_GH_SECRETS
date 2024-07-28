@@ -28,7 +28,7 @@ jobs:
         uses: aws-actions/aws-secretsmanager-get-secrets@v1
         with:
           secret-ids: |
-            MY_SECRET, arn:aws:secretsmanager:eu-north-1:008971664413:secret:aem_creds
+            MY_SECRET, arn:aws:secretsmanager:eu-north-1:008971664413:secret:aem-creds-IsnUVY
           parse-json-secrets: true
 
       - name: Print secret
