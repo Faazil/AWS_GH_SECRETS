@@ -1,4 +1,4 @@
-name: Get AWS Secrets into workflow
+name: Get AWS Secrets into workflow 
 
 on: [push]
 
