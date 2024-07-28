@@ -19,6 +19,7 @@ jobs:
       - name: Assume Workflow Role
         uses: aws-actions/configure-aws-credentials@v2
         with:
+          aws-region: eu-north-1
           role-to-assume: arn:aws:iam::008971664413:role/Github_Actions
           role-duration-seconds: 1200
           role-skip-session-tagging: true
