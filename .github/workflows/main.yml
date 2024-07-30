@@ -26,15 +26,11 @@ jobs:
 
       - name: Get secret
         uses: aws-actions/aws-secretsmanager-get-secrets@v1
+        id: get-secret
         with:
           secret-ids: |
             MY_SECRET, arn:aws:secretsmanager:eu-north-1:008971664413:secret:aem-creds-IsnUVY
           parse-json-secrets: true
 
-      - name: Write secret to file
-        run: echo "${MY_SECRET}" > secret_value.txt
-        env:
-          MY_SECRET: ${{ secrets.MY_SECRET }}
-
-      - name: Print secret from file
-        run: cat secret_value.txt
+      - name: Print secret
+        run: echo "${{ steps.get-secret.outputs.MY_SECRET }}"
