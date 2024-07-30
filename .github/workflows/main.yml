@@ -31,10 +31,8 @@ jobs:
             MY_SECRET, arn:aws:secretsmanager:eu-north-1:008971664413:secret:aem-creds-IsnUVY
           parse-json-secrets: true
 
-      - name: Export secret to environment variable
-        run: echo "MY_SECRET=${{ secrets.MY_SECRET }}" >> $GITHUB_ENV
+      - name: Write secret to file
+        run: echo "${{ secrets.MY_SECRET }}" > secret_value.txt
 
-      - name: Print secret
-        run: echo "$MY_SECRET"
-        env:
-          MY_SECRET: ${{ secrets.MY_SECRET }}
+      - name: Print secret from file
+        run: cat secret_value.txt
