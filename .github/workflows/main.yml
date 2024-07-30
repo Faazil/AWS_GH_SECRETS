@@ -32,7 +32,9 @@ jobs:
           parse-json-secrets: true
 
       - name: Write secret to file
-        run: echo "${{ secrets.MY_SECRET }}" > secret_value.txt
+        run: echo "${MY_SECRET}" > secret_value.txt
+        env:
+          MY_SECRET: ${{ secrets.MY_SECRET }}
 
       - name: Print secret from file
         run: cat secret_value.txt
