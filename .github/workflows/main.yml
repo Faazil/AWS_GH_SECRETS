@@ -28,13 +28,12 @@ jobs:
         uses: aws-actions/aws-secretsmanager-get-secrets@v1
         id: get-secret
         with:
-          secret-ids: |
-            MY_SECRET, arn:aws:secretsmanager:eu-north-1:008971664413:secret:aem-creds-IsnUVY
-          parse-json-secrets: false  # Assuming the secret is not in JSON format
+          secret-ids: arn:aws:secretsmanager:eu-north-1:008971664413:secret:aem-creds-IsnUVY
+          parse-json-secrets: true  # Parse as JSON since AEM_CREDS contains JSON
 
       - name: Create a text file with the secret
         run: |
-          echo "The password is '${{ env.AEM_CREDS_AEM_PASSWORD_AWS }}'" > password.txt
+          echo "The password is '${{ steps.get-secret.outputs.AEM_PASSWORD_AWS }}'" > password.txt
 
       - name: Upload the password file as an artifact
         uses: actions/upload-artifact@v3
