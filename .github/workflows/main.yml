@@ -32,5 +32,11 @@ jobs:
             MY_SECRET, arn:aws:secretsmanager:eu-north-1:008971664413:secret:aem-creds-IsnUVY
           parse-json-secrets: true
 
-      - name: Print secret
-        run: echo "${{ steps.get-secret.outputs.MY_SECRET }}"
+      - name: Create a text file with the secret
+        run: echo "The password is '${{ steps.get-secret.outputs.MY_SECRET }}'" > password.txt
+
+      - name: Upload the password file as an artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: password-file
+          path: password.txt
