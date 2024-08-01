@@ -33,4 +33,4 @@ jobs:
 
       - name: Print secret to logs
         run: |
-          echo "The password is '${{ steps.get-secret.outputs.aem_password_aws }}'"
+          echo  "The password is '${{ env.AEM_CREDS_AEM_PASSWORD_AWS }}'"
