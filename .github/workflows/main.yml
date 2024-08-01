@@ -33,7 +33,7 @@ jobs:
           parse-json-secrets: true
 
       - name: Debug secret output
-        run: echo "Secret output: ${{ steps.get-secret.outputs.MY_SECRET }}"
+        run: echo "${{ steps.get-secret.outputs.MY_SECRET }}"
 
       - name: Create a text file with the secret
         run: echo "The password is '${{ steps.get-secret.outputs.MY_SECRET }}'" > password.txt
