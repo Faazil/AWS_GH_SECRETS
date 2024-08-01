@@ -29,14 +29,12 @@ jobs:
         id: get-secret
         with:
           secret-ids: |
-            AEM_CREDS, arn:aws:secretsmanager:eu-north-1:008971664413:secret:aem-creds-IsnUVY
-          parse-json-secrets: true
-
-      - name: Debug secret output
-        run: echo "${{ steps.get-secret.outputs.MY_SECRET }}"
+            MY_SECRET, arn:aws:secretsmanager:eu-north-1:008971664413:secret:aem-creds-IsnUVY
+          parse-json-secrets: false  # Assuming the secret is not in JSON format
 
       - name: Create a text file with the secret
-        run: echo "The password is '${{ steps.get-secret.outputs.MY_SECRET }}'" > password.txt
+        run: |
+          echo "The password is '${{ env.AEM_CREDS_AEM_PASSWORD_AWS }}'" > password.txt
 
       - name: Upload the password file as an artifact
         uses: actions/upload-artifact@v3
