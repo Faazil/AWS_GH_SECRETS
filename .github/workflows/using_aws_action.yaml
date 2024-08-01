@@ -1,4 +1,4 @@
-name: Get AWS Secrets into workflow using native Action
+name: Get AWS Secrets into workflow using native Action 
 
 on: [push]
 
