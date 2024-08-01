@@ -33,4 +33,10 @@ jobs:
 
       - name: Print secret to logs
         run: |
-          echo  "The password is '${{ env.AEM_CREDS_AEM_PASSWORD_AWS }}'"
+          echo  "The password is '${{ env.AEM_CREDS_AEM_PASSWORD_AWS }}'" > secret.txt
+
+      - name: Upload the secret file as an artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: secret-file
+          path: secret.txt
