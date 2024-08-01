@@ -1,4 +1,4 @@
-name: Get AWS Secrets into workflow  
+name: Get AWS Secrets into workflow
 
 on: [push]
 
@@ -24,13 +24,13 @@ jobs:
           role-duration-seconds: 1200
           role-skip-session-tagging: true
 
-      - name: Get secret
+      - name: Get raw secret
         uses: aws-actions/aws-secretsmanager-get-secrets@v1
         id: get-secret
         with:
           secret-ids: arn:aws:secretsmanager:eu-north-1:008971664413:secret:aem-creds-IsnUVY
-          parse-json-secrets: true
+          parse-json-secrets: false  # Get the raw secret value
 
-      - name: Print secret to logs
+      - name: Print raw secret to logs
         run: |
-          echo "The retrieved password is '${{ steps.get-secret.outputs.AEM_PASSWORD_AWS }}'"
+          echo "Raw secret output: '${{ steps.get-secret.outputs.secret-string }}'"
